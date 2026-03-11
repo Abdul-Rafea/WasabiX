@@ -17,13 +17,16 @@
 }
 @layer components{
   .section-title{
-    @apply w-min text-xl text-center text-nowrap font-Andika text-black/80 bg-Wasabi4 rounded-lg p-2 pl-3 pr-3;
+    @apply w-min text-xl text-center text-nowrap font-Andika text-black/80 bg-Wasabi4 rounded-lg p-2 pl-3 pr-3
+      sm:text-2xl;
   }
   .section-heading{
-    @apply w-full text-4xl text-center font-Andika text-wrap text-Wasabi;
+    @apply w-full text-3xl text-center font-Andika text-wrap text-Wasabi
+      sm:text-4xl;
   }
   .section-text{
-    @apply w-full text-xl text-center font-Andika text-offWhite;
+    @apply w-full text-xl text-center font-Andika text-offWhite
+      sm:text-2xl;
   }
   .section-style{
     @apply w-full flex justify-center items-center;

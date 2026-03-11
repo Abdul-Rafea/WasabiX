@@ -90,78 +90,41 @@ function LandingPage() {
     return (
         <>
             {showNotification && <NotificationFrame />}
-            <div className="w-full relative flex flex-col justify-center items-center bg-[url(./assets/WasabiX_Background.webp)] bg-cover bg-left bg-fixed">
-                <header className="z-50 fixed top-0 w-full flex justify-between items-center p-2 backdrop-blur-md bg-black/70 border-b-2 border-white">
-                    <div className="w-2/5 flex  justify-center items-center gap-2">
-                        <img src={WasabiX_Logo} alt="Wasabi X logo" className="w-1/4 rounded-lg" />
-                        <h2 className="font-Andka text-Wasabi4 font-bold text-2xl">WasabiX</h2>
+            <div className="w-full min-h-screen relative flex flex-col justify-center items-center bg-[url(./assets/WasabiX_Background.webp)] bg-cover bg-left bg-fixed bg-no-repeat">
+                <header className="z-50 fixed top-0 w-full flex justify-between items-center p-2 backdrop-blur-md bg-black/70 border-b-2 border-white
+                    sm:p-3 sm:border-b-3">
+                    <div className="w-1/2 flex justify-start items-center gap-2 
+                        sm:gap-3 ">
+                        <img src={WasabiX_Logo} alt="Wasabi X logo" className="w-1/5 rounded-md
+                            sm:w-1/7" />
+                        <h2 className="font-Andka text-Wasabi4 font-bold text-2xl 
+                            md:text-3xl">WasabiX</h2>
                     </div>
-                    <nav className="w-9/10 justify-center items-center flex-wrap gap-2 -mt-1 text-White text-base font-Andika font-semibold hidden sm:flex ">
-                        <a onClick={() => handleNav(0)} className="w-1/4 flex flex-wrap justify-center items-center">
-                            Features
-                            {navUnderline == "features"? (
-                                <div className="w-full h-0.5 bg-Wasabi2 rounded-full">&nbsp;</div>
-                            ):
-                            (
-                                <></>
-                            )}
-                        </a>
-                        <a onClick={() => handleNav(1)} className="w-1/4 flex flex-wrap justify-center items-center">
-                            Community
-                            {navUnderline == "community"? (
-                                <div className="w-full h-0.5 bg-Wasabi2 rounded-full">&nbsp;</div>
-                            ):
-                            (
-                                <></>
-                            )}
-                        </a>
-                        <a onClick={() => handleNav(2)} className="w-1/4 flex flex-wrap justify-center items-center">
-                            Download
-                            {navUnderline == "download"? (
-                                <div className="w-full h-0.5 bg-Wasabi2 rounded-full">&nbsp;</div>
-                            ):
-                            (
-                                <></>
-                            )}
-                        </a>
-                    </nav>
-                    <div className="w-3/5 flex justify-end gap-2">
-                        <DropdownMenu onOpenChange={setMenuOpen} >
-                            <DropdownMenuTrigger>
-                                <Button asChild size="sm" className="bg-Wasabi4 hover:bg-Wasabi sm:hidden">
+                    <div className="w-1/2 flex justify-end gap-2">
+                        <DropdownMenu onOpenChange={setMenuOpen}>
+                            <DropdownMenuTrigger asChild>
+                                <button className="bg-Wasabi4 hover:bg-Wasabi rounded-md p-1">
                                     { menuOpen? (
-                                        <svg
-                                            width={50}
-                                            height={50}
-                                            viewBox="0 0 24 24"
-                                            fill="none"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                        >
-                                                <path
-                                                    d="M6.995 7.006a1 1 0 000 1.415l3.585 3.585-3.585 3.585a1 1 0 101.414 1.414l3.585-3.585 3.585 3.585a1 1 0 001.415-1.414l-3.586-3.585 3.586-3.585a1 1 0 00-1.415-1.415l-3.585 3.585L8.41 7.006a1 1 0 00-1.414 0z"
-                                                    fill="#0F0F0F"
-                                                />
-                                        </svg>
-                                    ):
+                                        <>
+                                            <Svg
+                                                id = {8}
+                                                svgColor = "fillBlack"
+                                                size = "headerIcon"
+                                            /> 
+                                        </>
+                                ):
                                     (
-                                        <svg
-                                            width={50}
-                                            height={50}
-                                            viewBox="0 0 24 24"
-                                            fill="none"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                        >
-                                            <path
-                                                d="M4 6h16M4 12h16M4 18h16"
-                                                stroke="#000"
-                                                strokeWidth={2}
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
+                                        <>
+                                            <Svg
+                                                id = {9}
+                                                svgColor = "Black"
+                                                size = "headerIcon"
                                             />
-                                        </svg>
+
+                                        </>
                                     )
                                     }
-                                </Button>
+                                </button>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent className="bg-black/70 backdrop-blur-md text-white">
                                 <DropdownMenuLabel>Menu</DropdownMenuLabel>
@@ -218,15 +181,17 @@ function LandingPage() {
                     <div className="section-basic-blur h-8/10">
                         <div className="flex justify-center items-center flex-col gap-5 text-center">
                             <div className="section-title">CONNECT, COMMENT, CLOUD</div>
-                            <h1 className="section-heading">Weather Powered by People.</h1>
+                        <h1 className="section-heading">Weather Powered by People.</h1>
                             <p className="section-text">Track real-time weather, share your sky, and connect with a community that cares about the forecast as much as you do.</p>
                         </div>
                         <div className="mt-10 w-full flex justify-center items-center flex-col gap-3">
-                            <Button size="lg" className="bg-Wasabi4 hover:bg-Wasabi text-black font-bold font-Andika border border-black rounded-xl">
+                            <Button size="lg" className="bg-Wasabi4 hover:bg-Wasabi text-black font-bold font-Andika border border-black rounded-xl
+                                sm:text-lg">
                                 <Link to="signup">Get Started</Link>
-                                <ArrowUpRightIcon />
+                                <ArrowUpRightIcon className="sm:size-7" />
                                 </Button>
-                            <Button asChild size="lg" className="bg-white hover:bg-Wasabi2 text-black font-bold font-Andika border border-black rounded-xl">
+                            <Button asChild size="lg" className="bg-white hover:bg-Wasabi2 text-black font-bold font-Andika border border-black rounded-xl
+                                sm:text-lg">
                                 <a href="#features">See Features</a>
                             </Button>
                         </div>
@@ -242,8 +207,7 @@ function LandingPage() {
                                 <CarouselItem>
                                     <DescriptionFrame 
                                         type = "1" 
-                                        id={1} 
-                                        svgWidth={50}  
+                                        id={1}
                                         heading="Live Weather Data" 
                                         text="Get hyper-local forecasts with real-time data, 3-day outlooks for any location worldwide." 
                                     />
@@ -357,11 +321,11 @@ function LandingPage() {
                         <p className="section-text">Download the latest version and start using WasabiX direclty from your phone</p>
                         <div className="mt-5 w-9/10 flex flex-wrap justify-start items-center gap-4">
                             <p className="text-xl font-Andika text-black/80">For Android :</p>
-                            <Button size="lg" className="bg-Wasabi4 hover:bg-Wasabi text-black/80 font-bold border border-black rounded-xl">Click Here</Button>
+                            <Button className="bg-Wasabi hover:bg-Wasabi4 text-black/80 text-md border border-black rounded-xl">Click Here</Button>
                         </div>
                         <div className="w-9/10 flex flex-wrap justify-start items-center gap-4">
                             <p className="text-xl font-Andika text-black/80">For iOS :</p>
-                            <Button size="lg" className="bg-Wasabi4 hover:bg-Wasabi text-black/80 font-bold border border-black rounded-xl">Click Here</Button>
+                            <Button className="bg-Wasabi hover:bg-Wasabi4 text-black/80 text-md border border-black rounded-xl">Click Here</Button>
                         </div>
                     </div>
                 </section>
@@ -385,10 +349,16 @@ function LandingPage() {
                             <button className="w-min text-nowrap hover:bg-Wasabi">Terms and Conditions</button>
                         </div>
                     </div>
-                    <div className="mt-4 w-2/3 flex flex-col text-offWhite font-Andika text-lg">
-                        <h2 className="text-Wasabi">Company</h2>
-                        <button className="w-min text-nowrap hover:bg-Wasabi">About</button>
-                        <button className="w-min text-nowrap hover:bg-Wasabi">Contact</button>
+                    <div className="w-full flex justify-between">
+                        <div className="mt-4 w-1/2 flex flex-col text-offWhite font-Andika text-lg">
+                            <h2 className="text-Wasabi">Company</h2>
+                            <button className="w-min text-nowrap hover:bg-Wasabi">About</button>
+                            <button className="w-min text-nowrap hover:bg-Wasabi">Contact</button>
+                        </div>
+                        <div className="w-2/3 flex flex-col text-offWhite font-Andika text-lg">
+                                <h2 className="text-Wasabi">Report a bug / issue</h2>
+                                <button className="w-min text-nowrap hover:bg-Wasabi" >abdulrafea97@gmail.com</button>
+                        </div>
                     </div>
                     <div className="mt-4 w-full flex flex-col items-center text-base font-Andika text-offWhite">
                         <h2>&copy;2026 WasabiX. All rights reserved.</h2>

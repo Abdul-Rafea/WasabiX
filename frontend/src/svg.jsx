@@ -1,19 +1,25 @@
 function Svg(props){
-    const width = props.width;
-    const height = props.width;
+    const classMap = {
+        headerIcon: "size-7 sm:size-9",
+        descriptionIcon1: "size-10 sm:size-13",
+        descriptionIcon2: "size-5",
+        descriptionIcon3: "size-11"
+    }
+    const sizeMap = classMap[props.size || "headerIcon"];
 
     const colorMap = {
         Wasabi: "stroke-Wasabi",
         offWhite : "stroke-offWhite",
         Black : "stroke-black/80",
+        fillWasabi: "fill-Wasabi",
+        filloffWhite: "fill-offWhite",
+        fillBlack: "fill-black/80",
     };
-    const svgClass = colorMap[props.svgColor || colorMap[offWhite]];
+    const svgClass = colorMap[props.svgColor || "offWhite" ];
 
     const svgVar = {
         1:(
-            <svg
-                width={width}
-                height={height}
+            <svg className={sizeMap}
                 viewBox="-0.13 0 20.355 20.355"
                 xmlns="http://www.w3.org/2000/svg"
             >
@@ -28,9 +34,7 @@ function Svg(props){
             </svg>
         ),
         2:(
-            <svg
-                width={width}
-                height={height}
+            <svg className={sizeMap}
                 viewBox="0 0 24 24"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -44,9 +48,7 @@ function Svg(props){
             </svg>
         ),
         3: (
-            <svg
-                width={width}
-                height={height}
+            <svg className={sizeMap}
                 viewBox="0 0 24 24"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -66,9 +68,7 @@ function Svg(props){
             </svg>
         ),
         4:(
-            <svg
-                width={width}
-                height={height}
+            <svg className={sizeMap}
                 viewBox="0 0 24 24"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -86,9 +86,7 @@ function Svg(props){
             </svg>
         ),
         5:(
-            <svg
-                width={width}
-                height={height}
+            <svg className={sizeMap}
                 viewBox="0 0 24 24"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -108,9 +106,7 @@ function Svg(props){
             </svg>
         ),
         6:(
-            <svg
-                width={width}
-                height={height}
+            <svg className={sizeMap}
                 viewBox="0 0 24 24"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -124,9 +120,7 @@ function Svg(props){
             </svg>
         ),
         7:(
-             <svg
-                width={width}
-                height={height}
+             <svg className={sizeMap}
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -136,6 +130,31 @@ function Svg(props){
                     strokeLinejoin="round"
                     strokeWidth={2}
                     d="M15 11h3m0 0h3m-3 0v3m0-3V8m-3 11v-1.25c0-2.071-1.919-3.75-4.286-3.75H7.286C4.919 14 3 15.679 3 17.75V19m9-11a3 3 0 11-6 0 3 3 0 016 0z"
+                />
+            </svg>
+        ),
+        8:(
+            <svg className={sizeMap}
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <path className={svgClass} 
+                    d="M6.995 7.006a1 1 0 000 1.415l3.585 3.585-3.585 3.585a1 1 0 101.414 1.414l3.585-3.585 3.585 3.585a1 1 0 001.415-1.414l-3.586-3.585 3.586-3.585a1 1 0 00-1.415-1.415l-3.585 3.585L8.41 7.006a1 1 0 00-1.414 0z"
+                />
+            </svg>
+        ),
+        9:(
+            <svg className={sizeMap}
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <path className={svgClass}
+                    d="M4 6h16M4 12h16M4 18h16"
+                    strokeWidth={2}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                 />
             </svg>
         )
