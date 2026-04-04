@@ -25,10 +25,11 @@ function LoginPage(){
     const navigate = useNavigate();
 
     const {
+        setIsLoading,
         setIsLoggedIn,
         setNotificationMsg,
-        showNotification, setShowNotification,
-        notificationError,setNotificationError,
+        setShowNotification,
+        setNotificationError,
         setGlobalUserName,
         setGlobalAvatar,
     } = useContext(WeatherContext);
@@ -40,7 +41,6 @@ function LoginPage(){
     const [password, setPassword] = useState("");
     const [passwordError, setPasswordError] = useState(false);
     const [useEmail, setUseEmail] = useState(true);
-    const [isLoading, setIsLoading] = useState(false);
 
     let fieldError = false; 
 

@@ -53,39 +53,72 @@ const auth = (req, res, next) =>{
 }
 
 app.get('/weather', async (req, res) => {
-    try{
-        const latitude = req.query.latitude;
-        const longitude = req.query.longitude;
-        const weatherAPI_key = process.env.WEATHER_API_KEY;
+    const latitude = req.latitude;
+        const longitude = req.longitude;
+
+        //units handling: -
+        const tempUnit = req.temUnit || "celcius";
+        const windUnit = req.windUnit || "kph";
+        const precipUnit = req.precipUnit || "mm";
+        const isCelcius = null;
+        const isKPH = null;
+        const isMM = null;
+        if(tempUnit === "celcius"){
+            isCelcius = true;
+        }
+        else{
+            isCelcius = false;
+        }
+
+        if(windUnit === "kph"){
+            isKPH = true;
+        }
+        else{
+            isKPH = false;
+        }
+
+        if(precipUnit === "mm"){
+            isMM = true;
+        }
+        else{
+            isMM = false;
+        }
+
         const aqiAPI_key = process.env.AQI_API_KEY;
-        const Days = 3;
+        const aqiResponseMsg = "";
+
+        const getDayName = (dateString) => {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-US', { weekday: 'long' });
+        };
     
-        const weatherResponse = await axios.get(`https://api.weatherapi.com/v1/forecast.json?key=${weatherAPI_key}&q=${latitude},${longitude}&days=${Days}&aqi=no&alerts=no`);
+    try{
+        const weatherResponse = await axios.get(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=weather_code,sunrise,sunset,uv_index_max,temperature_2m_mean,temperature_2m_max,temperature_2m_min,surface_pressure_mean,wind_speed_10m_mean,precipitation_probability_mean,relative_humidity_2m_mean&current=temperature_2m,relative_humidity_2m,is_day,weather_code,surface_pressure,wind_speed_10m${!isKPH && "&wind_speed_unit=mph"}${isCelcius && "&temperature_unit=fahrenheit"}${isMM && "&precipitation_unit=inch"}`);
+        const weatherData = weatherResponse.data;
+        if(!weatherData){
+            console.error("weather API error");
+            res.status(404).json({message: "Weather data not found"});
+        }
+        
         const aqiResponse = await axios.get(`https://api.waqi.info/feed/geo:${latitude};${longitude}/?token=${aqiAPI_key}`);
+        const aqiData = aqiResponse.data;
+        if(!aqiData){
+            console.error("AQI API error");
+            aqiResponseMsg = "Air quality data not found";
+        }
+        
+        //current data handling:-
+        const currentData = {
+            day: getDayName(weatherData.current.time),
+            temp: weatherData.curent.temperature_2m,
+            weatherCode: weatherData.current.weather_code,
+            isDay: weatherData.curent.is_day,
+            pressure: weatherData.current.surface_pressure,
+            humidity: weatherData.current.relative_humidity_2m,
+        }
 
         //Week data handling: -
-        const allForecastDays = weatherResponse.data.forecast.forecastday;
-        const futureForecastDays = allForecastDays.slice(1, 3);
-
-        const forecastData = futureForecastDays.map((item) => {
-            let dateStr = item.date;
-            let dateValue = new Date(dateStr);
-            let dayName = dateValue.toLocaleDateString('en-US', { weekday: 'short' });
-
-            return {    
-                day: dayName,
-                avgTempC: Math.round(item.day.avgtemp_c),
-                abgTempF: Math.round(item.date.avgtemp_f),
-                text: item.day.condition.text,
-                icon: item.day.condition.icon,
-            };
-        });
-
-        //current day: -
-        const dateStr = weatherResponse.data.location.localtime;
-        const date = new Date(dateStr);
-        const dayName = date.toLocaleDateString('en-US', { weekday: 'long' });
-
+        const weeekForecastData = weatherData.daily.time.map((date, index) => {});
         //precipitation data handling: -
         const precipData = weatherResponse.data.forecast.forecastday[0].hour.map((item) => ({
             time: item.time.split(' ')[1],

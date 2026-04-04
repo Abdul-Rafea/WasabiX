@@ -35,7 +35,7 @@ function SignUpPage(){
         setNotificationError,
         setIsLoading,
         setGlobalAvatar,
-        setGlobalUserName,
+        setGlobalUsername,
     } = useContext(WeatherContext);
 
     const [userName, setUsername] = useState("");
@@ -132,7 +132,7 @@ function SignUpPage(){
             const result = response.data;
             
             localStorage.setItem('token', result.token);
-            setGlobalUserName(result.username);
+            setGlobalUsername(result.username);
 
             setShowNotification(true);
             setNotificationMsg(result.message)

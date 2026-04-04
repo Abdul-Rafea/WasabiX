@@ -7,13 +7,13 @@ import { CircleCheck,
 } from 'lucide-react';
 
 //motion components: -
-import { motion, AnimatePresence } from "motion/react";
+import { motion } from "motion/react";
 
 function NotificationFrame(){
     const {
         notificationMsg,
         setShowNotification,
-        notificationError, setNotificationError,
+        notificationError,
     } = useContext(WeatherContext);
 
     useEffect(() =>{
@@ -43,7 +43,7 @@ function NotificationFrame(){
                 }
             </div>
             <div className="w-3/4">
-                <h2 className={`${notificationError? "text-red-500" : "text-offWhite"} font-iceberg text-2xl text-wrap`}>{notificationMsg}</h2>
+                <h2 className="text-offWhite font-iceberg text-2xl text-wrap">{notificationMsg}</h2>
             </div>
         </motion.div>
     );
